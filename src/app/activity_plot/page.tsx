@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import { siteActivity } from '@/api/siteActivity/siteActivity';
 import { useQuery } from '@tanstack/react-query';
 
