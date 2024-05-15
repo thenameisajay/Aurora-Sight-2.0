@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 
 import { Providers } from '@/providers/providers';
 
-import DevelopmentBanner from '@/components/Banner/pageBanner';
+import DevelopmentBanner from '@/components/banners/page-banner/Banner';
 import { siteConfig } from '@/data/site/site';
 
 import './globals.css';
@@ -26,7 +26,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" suppressHydrationWarning={true}>
+        <html
+            lang="en"
+            suppressHydrationWarning={true}
+            className=" h-dvh w-dvw"
+        >
             <head>
                 <link
                     rel="icon"
