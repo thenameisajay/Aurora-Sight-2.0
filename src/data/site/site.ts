@@ -7,6 +7,7 @@ export const siteConfig = {
         github: 'https://github.com/thenameisajay/Aurora-Sight-2.0',
     },
     keywords: ['next.js', 'typescript', 'aurora', 'real-time'],
+    creator: 'thenameisajay - https://github.com/thenameisajay',
 };
 
 export type SiteConfig = typeof siteConfig;

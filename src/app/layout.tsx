@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 
 import { Providers } from '@/providers/providers';
 
+import DevelopmentBanner from '@/components/Banner/pageBanner';
 import { siteConfig } from '@/data/site/site';
 
 import './globals.css';
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     keywords: siteConfig.keywords,
 
-    creator: 'thenameisajay - https://github.com/thenameisajay',
+    creator: siteConfig.creator,
 };
 
 export default function RootLayout({
@@ -27,7 +28,10 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning={true}>
             <body className={inter.className}>
-                <Providers>{children}</Providers>
+                <Providers>
+                    <DevelopmentBanner />
+                    {children}
+                </Providers>
             </body>
         </html>
     );
