@@ -1,15 +1,15 @@
 import axios from 'axios';
 import xml2js from 'xml2js';
 
-export async function liveStatus() {
+const URL = 'https://aurorawatch-api.lancs.ac.uk/0.2/status/current-status.xml';
+
+export async function currentStatus() {
     try {
-        const response = await axios.get(
-            'https://aurorawatch-api.lancs.ac.uk/0.2/status/current-status.xml',
-        );
-        const xmlData = response.data.toString(); // Convert xmlData to a string
+        const response = await axios.get(URL);
+        const xmlData: string = response.data.toString(); // Convert xmlData to a string
 
         return new Promise((resolve, reject) => {
-            xml2js.parseString(String(xmlData), (err, result) => {
+            xml2js.parseString(xmlData, (err, result) => {
                 if (err) {
                     reject(new Error('Failed to parse XML data'));
                     return;
@@ -19,16 +19,12 @@ export async function liveStatus() {
                 const { datetime } = result.current_status.updated[0];
 
                 // Pack it into an object
-                const resultJson = {
+                const jsonData = {
                     status_id: status_id,
                     datetime: datetime,
                 };
 
-                const resultArray = [];
-
-                resultArray.push(resultJson);
-
-                resolve(resultArray);
+                resolve([jsonData]);
             });
         });
     } catch (error) {

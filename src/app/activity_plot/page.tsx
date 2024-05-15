@@ -1,23 +1,25 @@
 'use client';
 
-import { currentStatus } from '@/api/currentStatus/currentStatus';
+import React from 'react';
+
+import { siteActivity } from '@/api/siteActivity/siteActivity';
 import { useQuery } from '@tanstack/react-query';
 
-export default function Home() {
+export default function Page() {
     const { data, isPending, isError } = useQuery({
-        queryKey: ['liveStatus'],
-        queryFn: currentStatus,
+        queryKey: ['siteActivity'],
+        queryFn: siteActivity,
     });
+
+    console.log('Data:', data);
 
     if (isPending) return <h1>Loading...</h1>;
 
     if (isError) return <h1>Error...</h1>;
 
-    console.log('Data:', data);
-
     return (
         <div>
-            <h1>Hello World !</h1>
+            <h1>Activity Plot</h1>
         </div>
     );
 }
