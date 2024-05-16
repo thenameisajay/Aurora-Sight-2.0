@@ -46,7 +46,7 @@ export const STATUS_DESCRIPTIONS = {
 };
 
 export const statusInfo = Object.entries(STATUS_DESCRIPTIONS).map(
-    ([status, { color, description, meaning }]) => ({
+    ([, { color, description, meaning }]) => ({
         color,
         description: description.text,
         meaning: meaning.text,
