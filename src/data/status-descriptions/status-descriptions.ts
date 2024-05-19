@@ -1,4 +1,15 @@
-export const STATUS_DESCRIPTIONS = {
+interface Description {
+    lang: string;
+    text: string;
+}
+
+interface Status {
+    color: string;
+    description: Description;
+    meaning: Description;
+}
+
+export const STATUS_DESCRIPTIONS: Record<string, Status> = {
     green: {
         color: '#33ff33',
         description: {
@@ -46,7 +57,8 @@ export const STATUS_DESCRIPTIONS = {
 };
 
 export const statusInfo = Object.entries(STATUS_DESCRIPTIONS).map(
-    ([, { color, description, meaning }]) => ({
+    ([key, { color, description, meaning }]) => ({
+        key,
         color,
         description: description.text,
         meaning: meaning.text,
