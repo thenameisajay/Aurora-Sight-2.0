@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import { Providers } from '@/providers/providers';
 
 import DevelopmentBanner from '@/components/banners/banner/Banner';
+import DesktopNav from '@/components/navbars/desktop/DesktopNav';
+import MobileNav from '@/components/navbars/mobile/MobileNav';
 import { siteConfig } from '@/data/site/site';
 
 import './globals.css';
@@ -48,6 +50,8 @@ export default function RootLayout({
             <body className={inter.className}>
                 <Providers>
                     <DevelopmentBanner />
+                    <DesktopNav />
+                    <MobileNav />
                     {children}
                 </Providers>
             </body>
