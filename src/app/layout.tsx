@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 
 import { Providers } from '@/providers/providers';
 
-import DevelopmentBanner from '@/components/banners/page-banner/Banner';
+import DevelopmentBanner from '@/components/banners/banner/Banner';
 import { siteConfig } from '@/data/site/site';
 
 import './globals.css';
