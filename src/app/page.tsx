@@ -28,7 +28,7 @@ import {
 } from '@/utils/helpers/getStatusInfo';
 
 const heading = 'Aurora Sight 2.0';
-const description = 'See the aurora borealis from the UK';
+const description = 'See the aurora borealis from the UK 🇬🇧';
 const refreshInterval = 150000;
 
 const StatusCard = memo(
