@@ -1,7 +1,8 @@
 'use client';
 
-import { siteActivity } from '@/api/siteActivity/siteActivity';
 import { useQuery } from '@tanstack/react-query';
+
+import { siteActivity } from '@/api/siteActivity/siteActivity';
 
 export default function Page() {
     const { data, isPending, isError } = useQuery({

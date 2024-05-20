@@ -1,12 +1,15 @@
 'use client';
 
+import { memo } from 'react';
+
 import Image from 'next/image';
 
-import { currentStatus } from '@/api/currentStatus/currentStatus';
-import type { StatusData } from '@/types/interfaces/currentStatus';
 import { useQuery } from '@tanstack/react-query';
 
+import { currentStatus } from '@/api/currentStatus/currentStatus';
 import HeadBanner from '@/components/banners/head-banner/HeadBanner';
+import ErrorCard from '@/components/errors/ErrorCard';
+import SkeletonCard from '@/components/skeletons/SkeletonCard';
 import {
     Card,
     CardContent,
@@ -15,28 +18,70 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-
-import { getRelativeTime } from './utils/helpers/getRelativeTime';
-import { getStatusDescription } from './utils/helpers/getStatusDescription';
+import type { StatusData } from '@/types/interfaces/currentStatus';
+import { getRelativeTime } from '@/utils/helpers/getRelativeTime';
+import {
+    getStatusColor,
+    getStatusDescription,
+} from '@/utils/helpers/getStatusInfo';
 
 const heading = 'Aurora Sight 2.0';
 const description = 'See the aurora borealis from the UK';
+
+const StatusCard = memo(({ data }: { data: StatusData[] }) => {
+    const { status_id, datetime } = data[0];
+    console.log('Status ID:', typeof status_id);
+
+    const statusColor = getStatusColor(status_id);
+
+    const statusDescription = getStatusDescription(status_id);
+
+    console.log('Status Description:', statusDescription);
+
+    console.log('Status Color:', statusColor);
+
+    return (
+        <Card className="  relative mt-5  w-96 ">
+            <CardHeader>
+                <CardTitle className=" md:text-3xl">Status</CardTitle>
+                <CardDescription className="text-base text-gray-500">
+                    {statusDescription}
+                </CardDescription>
+            </CardHeader>
+
+            <CardContent>
+                <div className="flex flex-col">
+                    <div
+                        className={` flex h-14 items-center justify-center space-x-4 rounded-md border bg-[${statusColor}] p-4 text-white`}
+                    >
+                        <div className="flex-1 space-y-1"></div>
+                    </div>
+                </div>
+            </CardContent>
+            <CardFooter>
+                <p className="text-sm text-gray-600">
+                    <span>Last Updated:</span>{' '}
+                    {getRelativeTime(new Date(datetime))}
+                </p>
+            </CardFooter>
+        </Card>
+    );
+});
+
+StatusCard.displayName = 'StatusCard';
 
 export default function Home() {
     const { data, isPending, isError } = useQuery({
         queryKey: ['liveStatus'],
         queryFn: currentStatus,
+        refetchInterval: 150000, // The status is updated every 2.5 minutes , The actual api itself updates every 3 minutes.
+        refetchOnReconnect: true,
+        refetchOnWindowFocus: true,
     });
 
-    if (isPending) return <h1>Loading...</h1>;
-
-    if (isError) return <h1>Error...</h1>;
-
-    console.log('Data:', data);
-
     return (
-        <div>
-            <div className="mt-2 flex items-center justify-center  rounded-full">
+        <div className="flex flex-col items-center justify-center ">
+            <div className="flex items-center justify-center  rounded-full">
                 <Image
                     src="/aurora-sight.png"
                     alt="Aurora Sight 2.0 Logo"
@@ -46,35 +91,12 @@ export default function Home() {
                 />
             </div>
             <HeadBanner heading={heading} description={description} />
-            <StatusCard data={data} />
+            {isPending ? (
+                <SkeletonCard />
+            ) : (
+                !isError && data && <StatusCard data={data} />
+            )}
+            {isError && <ErrorCard />}
         </div>
     );
 }
-
-const StatusCard = ({ data }: { data: StatusData[] }) => {
-    const { status_id, datetime } = data[0];
-    console.log('Status ID:', typeof status_id);
-
-    return (
-        <Card>
-            <CardHeader>
-                <CardTitle>Status</CardTitle>
-                <CardDescription>
-                    {getStatusDescription(status_id)}
-                </CardDescription>
-            </CardHeader>
-
-            <CardContent>
-                <p>
-                    <span>Status ID:</span> {status_id}
-                </p>
-            </CardContent>
-            <CardFooter>
-                <p>
-                    <span>Last Updated:</span>{' '}
-                    {getRelativeTime(new Date(datetime))}
-                </p>
-            </CardFooter>
-        </Card>
-    );
-};

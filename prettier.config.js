@@ -12,6 +12,7 @@ const config = {
         '^(^react$|@react|react)',
         '^(next/(.*)$)|^(next$)',
         '<THIRD_PARTY_MODULES>',
+        '@[./]',
         '^@/(components|data|config)/',
         '^[./]',
     ],

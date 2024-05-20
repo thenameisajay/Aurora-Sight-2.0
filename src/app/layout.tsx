@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { Providers } from '@/providers/providers';
-
 import DevelopmentBanner from '@/components/banners/banner/Banner';
 import DesktopNav from '@/components/navbars/desktop/DesktopNav';
 import MobileNav from '@/components/navbars/mobile/MobileNav';
 import { siteConfig } from '@/data/site/site';
+import { Providers } from '@/providers/providers';
 
 import './globals.css';
 

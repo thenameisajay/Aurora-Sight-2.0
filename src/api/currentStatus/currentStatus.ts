@@ -1,6 +1,7 @@
-import type { StatusData } from '@/types/interfaces/currentStatus';
 import axios from 'axios';
 import xml2js from 'xml2js';
+
+import type { StatusData } from '@/types/interfaces/currentStatus';
 
 const URL = 'https://aurorawatch-api.lancs.ac.uk/0.2/status/current-status.xml';
 

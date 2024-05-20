@@ -1,6 +1,7 @@
-import type { SiteActivityData } from '@/types/interfaces/siteActivityData';
 import axios from 'axios';
 import xml2js from 'xml2js';
+
+import type { SiteActivityData } from '@/types/interfaces/siteActivityData';
 
 const URL =
     'https://aurorawatch-api.lancs.ac.uk/0.2/status/alerting-site-activity.xml';
