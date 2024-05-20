@@ -50,7 +50,7 @@ const StatusCard = memo(
         const statusMeaning = getStatusMeaning(status_id);
 
         return (
-            <Card className="  relative mt-5  md:w-96 ">
+            <Card className="  relative mx-4 mt-3  md:w-96 ">
                 <CardHeader>
                     <CardTitle className=" text-1xl md:text-3xl">
                         Status
@@ -137,7 +137,9 @@ export default function Home() {
                     />
                 )
             )}
-            {isError && <ErrorCard />}
+            {isError && (
+                <ErrorCard refresh={handleRefresh} dateUpdated={dateUpdated} />
+            )}
         </div>
     );
 }
