@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import { currentStatus } from '@/api/currentStatus/currentStatus';
 import HeadBanner from '@/components/banners/head-banner/HeadBanner';
 import ErrorCard from '@/components/errors/ErrorCard';
+import Footer from '@/components/footer/Footer';
 import SkeletonCard from '@/components/skeletons/SkeletonCard';
 import { Button } from '@/components/ui/button';
 import {
@@ -31,6 +32,23 @@ const heading = 'Aurora Sight 2.0';
 const description = 'See the aurora borealis from the UK 🇬🇧';
 const refreshInterval = 150000;
 
+const Header = () => {
+    return (
+        <>
+            <div className="sm:h-30   sm:w-30 flex h-24 w-24  items-center justify-center  rounded-full md:h-28 md:w-28 lg:h-32 lg:w-32">
+                <Image
+                    src="/aurora-sight.png"
+                    alt="Aurora Sight 2.0 Logo"
+                    width={200}
+                    height={200}
+                    loading="lazy"
+                />
+            </div>
+            <HeadBanner heading={heading} description={description} />
+        </>
+    );
+};
+
 const StatusCard = memo(
     ({
         data,
@@ -50,7 +68,7 @@ const StatusCard = memo(
         const statusMeaning = getStatusMeaning(status_id);
 
         return (
-            <Card className="  relative mx-4 mt-3  md:w-96 ">
+            <Card className="  relative mx-4 mt-3 overflow-y-scroll  md:w-96 ">
                 <CardHeader>
                     <CardTitle className=" text-1xl md:text-3xl">
                         Status
@@ -114,17 +132,8 @@ export default function Home() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center ">
-            <div className="sm:h-30   sm:w-30 flex h-24 w-24  items-center justify-center  rounded-full md:h-28 md:w-28 lg:h-48 lg:w-48">
-                <Image
-                    src="/aurora-sight.png"
-                    alt="Aurora Sight 2.0 Logo"
-                    width={200}
-                    height={200}
-                    loading="lazy"
-                />
-            </div>
-            <HeadBanner heading={heading} description={description} />
+        <div className="flex  flex-col items-center  justify-center">
+            <Header />
             {isPending ? (
                 <SkeletonCard />
             ) : (
@@ -140,6 +149,7 @@ export default function Home() {
             {isError && (
                 <ErrorCard refresh={handleRefresh} dateUpdated={dateUpdated} />
             )}
+            <Footer />
         </div>
     );
 }

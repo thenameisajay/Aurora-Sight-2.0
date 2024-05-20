@@ -3,7 +3,7 @@ export interface NavItem {
     href: string;
     disabled?: boolean;
     external?: boolean;
-    icon?: string;
+    icon?: React.ReactNode;
     label?: string;
 }
 

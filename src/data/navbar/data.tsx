@@ -1,3 +1,10 @@
+import {
+    DotsThreeCircle,
+    House,
+    Info,
+    PresentationChart,
+} from '@phosphor-icons/react';
+
 import type { MainNavItem, SidebarNavItem } from '@/types/interfaces/nav';
 
 interface navConfig {
@@ -8,23 +15,23 @@ interface navConfig {
 export const navConfig: navConfig = {
     desktopNav: [
         {
-            icon: 'House',
+            icon: <House size={20} />,
             title: 'Home',
             href: '/',
         },
         {
-            icon: 'Info',
+            icon: <Info size={20} />,
             title: 'Status Description',
             href: '/status-description',
         },
         {
-            icon: 'PresentationChart',
-            title: 'graphs',
+            icon: <PresentationChart size={20} />,
+            title: 'Graphs',
             href: '/graphs', // More graphs (Activity-plot, ...) will be added here
         },
 
         {
-            icon: 'DotsThreeCircle',
+            icon: <DotsThreeCircle size={20} />,
             title: 'More',
             href: '/more', // This is where the API status , Acknowledgments etc ... will be
         },
@@ -33,22 +40,22 @@ export const navConfig: navConfig = {
         {
             title: 'Home',
             href: '/',
-            icon: 'House',
+            icon: <House size={10} />,
         },
         {
             title: 'Status Description',
             href: '/status-description',
-            icon: 'Info',
+            icon: <Info size={10} />,
         },
         {
             title: 'graphs',
             href: '/graphs',
-            icon: 'PresentationChart',
+            icon: <PresentationChart size={10} />,
         },
         {
             title: 'More',
             href: '/more',
-            icon: 'DotsThreeCircle',
+            icon: <DotsThreeCircle size={10} />,
             items: [
                 {
                     title: 'API Status',
