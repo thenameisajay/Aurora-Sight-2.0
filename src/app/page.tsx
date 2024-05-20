@@ -30,18 +30,13 @@ const description = 'See the aurora borealis from the UK';
 
 const StatusCard = memo(({ data }: { data: StatusData[] }) => {
     const { status_id, datetime } = data[0];
-    console.log('Status ID:', typeof status_id);
 
     const statusColor = getStatusColor(status_id);
 
     const statusDescription = getStatusDescription(status_id);
 
-    console.log('Status Description:', statusDescription);
-
-    console.log('Status Color:', statusColor);
-
     return (
-        <Card className="  relative mt-5  w-96 ">
+        <Card className="  relative mt-5  md:w-96 ">
             <CardHeader>
                 <CardTitle className=" md:text-3xl">Status</CardTitle>
                 <CardDescription className="text-base text-gray-500">
@@ -52,7 +47,7 @@ const StatusCard = memo(({ data }: { data: StatusData[] }) => {
             <CardContent>
                 <div className="flex flex-col">
                     <div
-                        className={` flex h-14 items-center justify-center space-x-4 rounded-md border bg-[${statusColor}] p-4 text-white`}
+                        className={` flex h-14 items-center justify-center space-x-4 rounded-md border  bg-[${statusColor}] p-4 text-white`}
                     >
                         <div className="flex-1 space-y-1"></div>
                     </div>
