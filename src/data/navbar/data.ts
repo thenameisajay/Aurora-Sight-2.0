@@ -18,5 +18,13 @@ export const navConfig: navConfig = {
             title: 'Activity Plot',
             href: '/activity-plot',
         },
+        {
+            title: 'Acknowledgements',
+            href: '/acknowledgements',
+        },
+        {
+            title: 'API Status',
+            href: '/api-status',
+        },
     ],
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import { memo } from 'react';
+import { memo, useState } from 'react';
 
 import Image from 'next/image';
 
@@ -10,6 +10,7 @@ import { currentStatus } from '@/api/currentStatus/currentStatus';
 import HeadBanner from '@/components/banners/head-banner/HeadBanner';
 import ErrorCard from '@/components/errors/ErrorCard';
 import SkeletonCard from '@/components/skeletons/SkeletonCard';
+import { Button } from '@/components/ui/button';
 import {
     Card,
     CardContent,
@@ -23,60 +24,98 @@ import { getRelativeTime } from '@/utils/helpers/getRelativeTime';
 import {
     getStatusColor,
     getStatusDescription,
+    getStatusMeaning,
 } from '@/utils/helpers/getStatusInfo';
 
 const heading = 'Aurora Sight 2.0';
 const description = 'See the aurora borealis from the UK';
+const refreshInterval = 150000;
 
-const StatusCard = memo(({ data }: { data: StatusData[] }) => {
-    const { status_id, datetime } = data[0];
+const StatusCard = memo(
+    ({
+        data,
+        refresh,
+        dateUpdated,
+    }: {
+        data: StatusData[];
+        refresh: () => void;
+        dateUpdated: Date;
+    }) => {
+        const { status_id, datetime } = data[0];
 
-    const statusColor = getStatusColor(status_id);
+        const statusColor = getStatusColor(status_id);
 
-    const statusDescription = getStatusDescription(status_id);
+        const statusDescription = getStatusDescription(status_id);
 
-    return (
-        <Card className="  relative mt-5  md:w-96 ">
-            <CardHeader>
-                <CardTitle className=" md:text-3xl">Status</CardTitle>
-                <CardDescription className="text-base text-gray-500">
-                    {statusDescription}
-                </CardDescription>
-            </CardHeader>
+        const statusMeaning = getStatusMeaning(status_id);
 
-            <CardContent>
-                <div className="flex flex-col">
-                    <div
-                        className={` flex h-14 items-center justify-center space-x-4 rounded-md border  bg-[${statusColor}] p-4 text-white`}
-                    >
-                        <div className="flex-1 space-y-1"></div>
+        return (
+            <Card className="  relative mt-5  md:w-96 ">
+                <CardHeader>
+                    <CardTitle className=" text-1xl md:text-3xl">
+                        Status
+                    </CardTitle>
+                    <CardDescription className="text-gray-500 md:text-base">
+                        {statusDescription}
+                    </CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                    <div className="flex flex-col">
+                        <div
+                            className={` flex h-14 items-center justify-center space-x-4 rounded-md border  p-4 text-white`}
+                            style={{ backgroundColor: statusColor }} // Forcefully added the style prop , as the dynamic class prop via Tailwind was not working.
+                        >
+                            <div className="flex-1 space-y-1"></div>
+                        </div>
                     </div>
-                </div>
-            </CardContent>
-            <CardFooter>
-                <p className="text-sm text-gray-600">
-                    <span>Last Updated:</span>{' '}
-                    {getRelativeTime(new Date(datetime))}
-                </p>
-            </CardFooter>
-        </Card>
-    );
-});
+                    <div className="  flex w-full items-center justify-center  text-center">
+                        <p className="mt-2 text-sm text-gray-600 md:text-base">
+                            {statusMeaning}
+                        </p>
+                    </div>
+                </CardContent>
+                <CardFooter className="flex w-full flex-col">
+                    <Button onClick={refresh} className="my-1">
+                        Refresh
+                    </Button>
+                    <div className="flex flex-col items-center justify-center ">
+                        <p className="mt-2  text-xs text-gray-600 md:text-sm">
+                            <span>API Last Updated:</span>{' '}
+                            {getRelativeTime(new Date(datetime))}
+                        </p>
+                        <p className="mt-2  text-xs text-gray-600 md:text-sm">
+                            <span>Last Synced:</span>{' '}
+                            {getRelativeTime(dateUpdated)}
+                        </p>
+                    </div>
+                </CardFooter>
+            </Card>
+        );
+    },
+);
 
 StatusCard.displayName = 'StatusCard';
 
 export default function Home() {
-    const { data, isPending, isError } = useQuery({
+    const { data, isPending, isError, refetch } = useQuery({
         queryKey: ['liveStatus'],
         queryFn: currentStatus,
-        refetchInterval: 150000, // The status is updated every 2.5 minutes , The actual api itself updates every 3 minutes.
+        refetchInterval: refreshInterval, // The status is updated every 2.5 minutes , The actual api itself updates every 3 minutes.
         refetchOnReconnect: true,
         refetchOnWindowFocus: true,
     });
 
+    const [dateUpdated, setDateUpdated] = useState<Date>(new Date());
+
+    function handleRefresh() {
+        setDateUpdated(new Date());
+        void refetch();
+    }
+
     return (
         <div className="flex flex-col items-center justify-center ">
-            <div className="flex items-center justify-center  rounded-full">
+            <div className="sm:h-30   sm:w-30 flex h-24 w-24  items-center justify-center  rounded-full md:h-28 md:w-28 lg:h-48 lg:w-48">
                 <Image
                     src="/aurora-sight.png"
                     alt="Aurora Sight 2.0 Logo"
@@ -89,7 +128,14 @@ export default function Home() {
             {isPending ? (
                 <SkeletonCard />
             ) : (
-                !isError && data && <StatusCard data={data} />
+                !isError &&
+                data && (
+                    <StatusCard
+                        data={data}
+                        refresh={handleRefresh}
+                        dateUpdated={dateUpdated}
+                    />
+                )
             )}
             {isError && <ErrorCard />}
         </div>
