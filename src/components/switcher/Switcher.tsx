@@ -21,7 +21,7 @@ export default function Switcher({
                             {item.icon && item.icon}
                             <div className="h-2"></div>
                             {/* Spacer */}
-                            <span className="  text-center text-sm md:text-lg ">
+                            <span className="  text-center text-xs font-medium md:text-lg ">
                                 {item.title}
                             </span>
                         </div>
