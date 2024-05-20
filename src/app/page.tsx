@@ -103,7 +103,7 @@ const StatusCard = memo(
                             {getRelativeTime(new Date(datetime))}
                         </p>
                         <p className="mt-2  text-xs text-gray-600 md:text-sm">
-                            <span>Last Synced:</span>{' '}
+                            <span>Last Refreshed:</span>{' '}
                             {getRelativeTime(dateUpdated)}
                         </p>
                     </div>

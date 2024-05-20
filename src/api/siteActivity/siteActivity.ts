@@ -20,6 +20,7 @@ export async function siteActivity(): Promise<SiteActivityData[]> {
                     }
 
                     const { site_activity } = result;
+
                     const jsonData: SiteActivityData = {
                         lower_threshold: site_activity.lower_threshold.map(
                             (item: object) => item,
