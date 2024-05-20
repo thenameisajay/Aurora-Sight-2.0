@@ -3,12 +3,12 @@ export interface NavItem {
     href: string;
     disabled?: boolean;
     external?: boolean;
-    // icon?: keyof typeof Icons;
+    icon?: string;
     label?: string;
 }
 
 export interface NavItemWithChildren extends NavItem {
-    items: NavItemWithChildren[];
+    items?: NavItemWithChildren[];
 }
 
 export interface MainNavItem extends NavItem {}
