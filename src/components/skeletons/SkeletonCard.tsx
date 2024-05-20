@@ -6,14 +6,15 @@ import { Skeleton } from '@/components/ui/skeleton';
  */
 export default function SkeletonCard() {
     return (
-        <Card className=" mt-4 flex  h-64 w-96 items-center justify-start p-4 ">
+        <Card className="  relative mx-4 mt-3 h-96 overflow-y-scroll  md:w-96 ">
             <div className="flex flex-col space-y-3 p-4">
                 <div className="space-y-2">
-                    <Skeleton className="h-4 w-[250px]" />
-                    <Skeleton className="h-4 w-[300px]" />
+                    <Skeleton className="h-4 w-[250px] md:w-[350px]" />
+                    <Skeleton className="h-4 w-[250px] md:w-[350px]" />
                 </div>
-                <Skeleton className="h-4 w-[320px]" />
-                <Skeleton className="h-[125px] w-[320px] rounded-xl px-2" />
+                <Skeleton className="h-4 w-[250px]" />
+                <Skeleton className="h-[125px] w-[250px] rounded-xl px-2 md:w-[350px] " />
+                <Skeleton className="h-[125px] w-[250px] rounded-xl px-2 md:w-[350px]" />
             </div>
         </Card>
     );

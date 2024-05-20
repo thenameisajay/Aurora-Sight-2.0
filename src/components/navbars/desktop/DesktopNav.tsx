@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 import { navConfig } from '@/data/navbar/data';
 import { cn } from '@/lib/utils';
 
-const { desktopNav } = navConfig;
+const { mainNav } = navConfig;
 
 export default function DesktopNav({
     className,
@@ -26,7 +26,7 @@ export default function DesktopNav({
             )}
             {...props}
         >
-            {desktopNav.map(
+            {mainNav.map(
                 (item) =>
                     item.href && (
                         <Link
