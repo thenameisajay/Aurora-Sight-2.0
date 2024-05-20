@@ -3,6 +3,7 @@
 import React from 'react';
 
 import HeadBanner from '@/components/banners/head-banner/HeadBanner';
+import Footer from '@/components/footer/Footer';
 import Switcher from '@/components/switcher/Switcher';
 import { navConfig } from '@/data/navbar/data';
 
@@ -10,14 +11,17 @@ const { switcherNav } = navConfig;
 
 const heading = 'More';
 
-const description =
-    'This is where the API status , Acknowledgments etc ... will be';
+const description = 'Explore additional resources listed below.';
 
 export default function Page() {
     return (
-        <div>
+        <div className="flex w-full flex-col items-center justify-center">
             <HeadBanner heading={heading} description={description} />
+            <div className=" h-10  md:h-20"></div>{' '}
+            {/*
+            Just a spacer  rather than using margin-top or top */}
             <Switcher switcherData={switcherNav} />
+            <Footer />
         </div>
     );
 }

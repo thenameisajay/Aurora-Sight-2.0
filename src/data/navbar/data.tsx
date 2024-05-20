@@ -44,17 +44,17 @@ export const navConfig: navConfig = {
         {
             title: 'API Status',
             href: '/api-status',
-            icon: <Signpost size={32} />,
+            icon: <Signpost size={50} />,
         },
         {
             title: 'Acknowledgements',
             href: '/acknowledgements',
-            icon: <HandsPraying size={32} />,
+            icon: <HandsPraying size={50} />,
         },
         {
             title: "FAQ's",
             href: '/faqs',
-            icon: <Question size={32} />,
+            icon: <Question size={50} />,
         },
     ],
 };

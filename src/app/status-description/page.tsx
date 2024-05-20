@@ -27,10 +27,10 @@ const StatusTable = () => {
                 </TableCaption>
                 <TableHeader>
                     <TableRow>
+                        <TableHead></TableHead>
                         <TableHead className="w-[100px] text-right">
                             Color
                         </TableHead>
-                        <TableHead></TableHead>
                         <TableHead className=" w-28 text-start">
                             Color-Code
                         </TableHead>
@@ -44,9 +44,6 @@ const StatusTable = () => {
                 <TableBody>
                     {statusInfo.map((status) => (
                         <TableRow key={status.key}>
-                            <TableCell className="text-right font-bold">
-                                {status.key?.toUpperCase()}
-                            </TableCell>
                             <TableCell>
                                 <div
                                     className=" h-6  w-20 rounded-full "
@@ -54,6 +51,9 @@ const StatusTable = () => {
                                         backgroundColor: `${status.color}`,
                                     }}
                                 />
+                            </TableCell>
+                            <TableCell className="text-right font-bold">
+                                {status.key?.toUpperCase()}
                             </TableCell>
                             <TableCell className="font-semibold">
                                 {status.color}
