@@ -1,15 +1,15 @@
-'use client';
-
 import React from 'react';
 
-import { navConfig } from '@/data/navbar/data';
+import type { MainNavItem } from '@/types/interfaces/nav';
 
-const { switcherNav } = navConfig;
-
-export default function Switcher() {
+export default function Switcher({
+    switcherData,
+}: {
+    switcherData: MainNavItem[];
+}) {
     return (
         <p>
-            {switcherNav.map((item, index) => (
+            {switcherData.map((item, index) => (
                 <a key={index} href={item.href}>
                     {item.icon && item.icon}
                     {item.title}
