@@ -56,7 +56,7 @@ const StatusTable = () => {
                                 {status.key?.toUpperCase()}
                             </TableCell>
                             <TableCell className="font-semibold">
-                                {status.color}
+                                {status.color.toUpperCase()}
                             </TableCell>
                             <TableCell className="md:text-base">
                                 {status.description}
