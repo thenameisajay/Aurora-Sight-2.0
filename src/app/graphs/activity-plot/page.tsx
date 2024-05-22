@@ -4,13 +4,19 @@ import { useQuery } from '@tanstack/react-query';
 
 import { siteActivity } from '@/api/siteActivity/siteActivity';
 
+const refreshInterval = 150000;
+
 export default function Page() {
-    const { data, isPending, isError } = useQuery({
+    const {
+        data: siteActivityData,
+        isError,
+        isPending,
+    } = useQuery({
         queryKey: ['siteActivity'],
         queryFn: siteActivity,
+        refetchInterval: refreshInterval,
     });
-
-    console.log('Data:', data);
+    console.log('Data:', siteActivityData);
 
     if (isPending) return <h1>Loading...</h1>;
 
