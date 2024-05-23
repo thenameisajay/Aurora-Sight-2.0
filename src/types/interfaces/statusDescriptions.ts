@@ -3,7 +3,7 @@ interface Description {
     text: string;
 }
 
-export interface Status {
+export interface StatusDescription {
     id: string;
     color: string;
     description: Description;

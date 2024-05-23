@@ -22,7 +22,7 @@ const heading = 'API Status';
 const description = 'Check the status of the AuroraWatch UK API.';
 const refreshInterval = 150000;
 
-const StatusCard = ({
+const APIStatusCard = ({
     data,
     error,
     title,
@@ -78,7 +78,7 @@ export default function Page() {
             <HeadBanner heading={heading} description={description} />
             <div className="h-10 md:h-20"></div>
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-                <StatusCard
+                <APIStatusCard
                     data={currentStatusData}
                     error={currentStatusError}
                     title="Current Status API"
@@ -90,7 +90,7 @@ export default function Page() {
                     activeMessage="Active"
                     errorMessage="Error, The API is currently unavailable."
                 />
-                <StatusCard
+                <APIStatusCard
                     data={alertStatusData}
                     error={alertStatusError}
                     title="Alerting Site Activity API"
@@ -102,7 +102,7 @@ export default function Page() {
                     activeMessage="Active"
                     errorMessage="Error, The API is currently unavailable."
                 />
-                <StatusCard
+                <APIStatusCard
                     data={statusDescriptionData}
                     error={statusDescriptionError}
                     title="Status Description API"

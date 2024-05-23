@@ -14,13 +14,13 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import type { Status } from '@/types/interfaces/statusDescriptions';
+import type { StatusDescription } from '@/types/interfaces/statusDescriptions';
 
 const heading = 'Status Description';
 
 const description = 'A detailed overview of the geomagnetic activity status ';
 
-const StatusTable = ({ data }: { data: Status[] }) => {
+const StatusTable = ({ data }: { data: StatusDescription[] }) => {
     console.log('Status Description in the Table:', data);
 
     return (

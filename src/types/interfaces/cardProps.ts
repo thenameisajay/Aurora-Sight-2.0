@@ -1,7 +1,7 @@
 import type { StatusData } from '@/types/interfaces/currentStatus';
 import type { SiteActivityData } from '@/types/interfaces/siteActivityData';
 
-import type { Status } from './statusDescriptions';
+import type { StatusDescription } from './statusDescriptions';
 
 export interface StatusCardProps {
     data: StatusData[];
@@ -10,7 +10,7 @@ export interface StatusCardProps {
 }
 
 export interface APICardProps {
-    data: StatusData[] | SiteActivityData[] | Status[] | undefined;
+    data: StatusData[] | SiteActivityData[] | StatusDescription[] | undefined;
     error: boolean;
     title: string;
     description: string;
