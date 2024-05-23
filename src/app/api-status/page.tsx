@@ -15,21 +15,11 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import type { StatusData } from '@/types/interfaces/currentStatus';
-import type { SiteActivityData } from '@/types/interfaces/siteActivityData';
+import type { APICardProps } from '@/types/interfaces/cardProps';
 
 const heading = 'API Status';
 const description = 'Check the status of the AuroraWatch UK API.';
 const refreshInterval = 150000;
-
-interface CardProps {
-    data: StatusData[] | SiteActivityData[];
-    error: boolean;
-    title: string;
-    description: string;
-    activeMessage: string;
-    errorMessage: string;
-}
 
 const StatusCard = ({
     data,
@@ -38,7 +28,7 @@ const StatusCard = ({
     description,
     activeMessage,
     errorMessage,
-}: CardProps) => {
+}: APICardProps) => {
     const serverActive = data && data.length > 0;
     const message = serverActive && !error ? activeMessage : errorMessage;
 
@@ -96,11 +86,11 @@ export default function Page() {
                 <StatusCard
                     data={alertStatusData}
                     error={alertStatusError}
-                    title="Altering Site Activity API"
+                    title="Alerting Site Activity API"
                     description={
                         alertStatusError
                             ? 'An error occurred while trying to retrieve the site activity.'
-                            : 'The Alterting Site Activity API is currently available.'
+                            : 'The Alerting Site Activity API is currently available.'
                     }
                     activeMessage="Active"
                     errorMessage="Error, The API is currently unavailable."
