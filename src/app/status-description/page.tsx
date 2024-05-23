@@ -4,7 +4,9 @@ import { useQuery } from '@tanstack/react-query';
 
 import { statusDescription } from '@/api/statusDescription/statusDescription';
 import HeadBanner from '@/components/banners/head-banner/HeadBanner';
+import ErrorCard from '@/components/errors/ErrorCard';
 import Footer from '@/components/footer/Footer';
+import { SkeletonTable } from '@/components/skeletons/SkeletonTable';
 import {
     Table,
     TableBody,
@@ -20,7 +22,7 @@ const heading = 'Status Description';
 
 const description = 'A detailed overview of the geomagnetic activity status ';
 
-const StatusTable = ({ data }: { data: StatusDescription[] }) => {
+const StatusTable = ({ data }: { data: StatusDescription[] | undefined }) => {
     console.log('Status Description in the Table:', data);
 
     return (
@@ -49,7 +51,7 @@ const StatusTable = ({ data }: { data: StatusDescription[] }) => {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {data.map((status) => (
+                    {data?.map((status) => (
                         <TableRow key={status.color}>
                             <TableCell>
                                 <div
@@ -80,23 +82,28 @@ const StatusTable = ({ data }: { data: StatusDescription[] }) => {
 };
 
 export default function Page() {
-    const { data, isPending, isError } = useQuery({
+    const { data, isPending, isError, refetch } = useQuery({
         queryKey: ['status-description'],
         queryFn: statusDescription,
     });
 
-    if (isPending) {
-        return <div>Loading...</div>;
-    }
-
-    if (isError) {
-        return <div>Error fetching data</div>;
-    }
-
     return (
         <div className="flex flex-col items-center justify-center ">
             <HeadBanner heading={heading} description={description} />
-            <StatusTable data={data} />
+            {isError && (
+                <div className="flex flex-col items-center justify-center">
+                    <ErrorCard refresh={refetch} />
+                </div>
+            )}
+
+            {isPending ? (
+                <div className="container relative   top-14  mx-auto flex items-center justify-center  p-4">
+                    <SkeletonTable />
+                </div>
+            ) : (
+                !isError && data && <StatusTable data={data} />
+            )}
+
             <Footer />
         </div>
     );
