@@ -1,20 +1,12 @@
-interface Description {
-    lang: string;
-    text: string;
-}
-
-interface Status {
-    color: string;
-    description: Description;
-    meaning: Description;
-}
+import type { RecordStatus } from '@/types/interfaces/statusDescriptions';
 
 /*
  * Derived from the AuroraWatch UK API status descriptions. (https://aurorawatch-api.lancs.ac.uk/0.2/status-descriptions.xml)
- * Chose to store it locally to avoid unnecessary API calls.
+ * Chose to store it locally for helper functions to access the data rather than making an API call each time.
+ * Disadvantage: The data will not be updated if the API data changes.
  */
 
-export const STATUS_DESCRIPTIONS: Record<string, Status> = {
+export const STATUS_DESCRIPTIONS: Record<string, RecordStatus> = {
     green: {
         color: '#33ff33',
         description: {
