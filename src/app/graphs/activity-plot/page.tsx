@@ -131,11 +131,11 @@ export default function Page() {
 
     if (isError) return <h1>Error...</h1>;
 
-    console.log('Site ACITIVIY:', siteActivityData);
-
-    const { updatedTime } = siteActivityData[0];
+    const { updatedTime, lower_threshold, activity } = siteActivityData[0];
 
     console.log('Updated Time:', updatedTime);
+    console.log('Lower Threshold:', lower_threshold);
+    console.log('Activity:', activity);
 
     return (
         <div>
