@@ -5,7 +5,7 @@
 import { ResponsiveBar } from '@nivo/bar';
 import dayjs from 'dayjs';
 
-import type { activityPlotGraphProps } from '@/types/interfaces/siteActivityData';
+import type { ActivityPlotGraphProps } from '@/types/interfaces/siteActivityData';
 
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
@@ -13,7 +13,7 @@ import type { activityPlotGraphProps } from '@/types/interfaces/siteActivityData
 // website examples showcase many properties,
 // you'll often use just a few of them.
 
-const GenericResponsiveBar = ({ data }: activityPlotGraphProps) => {
+const GenericResponsiveBar = ({ data }: ActivityPlotGraphProps) => {
     const maxValue = Math.max(...data.map((item) => item.value)); // Finding the maximum value in my data
     const tickInterval = Math.ceil(maxValue / 5); // Divide the maximum value by the number of ticks I wanted
     const tickValues = Array.from({ length: 6 }, (_, i) => i * tickInterval); // Generated tick values

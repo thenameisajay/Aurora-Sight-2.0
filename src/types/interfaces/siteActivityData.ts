@@ -12,14 +12,14 @@ export interface XMLActivity {
     value: string[];
 }
 
-export interface thresholdActivity {
+export interface ThresholdActivity {
     $: {
         status_id: string;
     };
     _: string;
 }
 
-export interface activityPlotGraphProps {
+export interface ActivityPlotGraphProps {
     data: {
         color: string;
         datetime: string;
