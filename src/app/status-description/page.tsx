@@ -88,23 +88,24 @@ export default function Page() {
     });
 
     return (
-        <div className="flex flex-col items-center justify-center ">
-            <HeadBanner title={heading} description={description} />
-            {isError && (
-                <div className="flex flex-col items-center justify-center">
-                    <ErrorCard refresh={refetch} />
-                </div>
-            )}
+        <>
+            <div className="flex h-dvh flex-col items-center justify-center ">
+                <HeadBanner title={heading} description={description} />
+                {isError && (
+                    <div className="flex flex-col items-center justify-center">
+                        <ErrorCard refresh={refetch} />
+                    </div>
+                )}
 
-            {isPending ? (
-                <div className="container relative   top-14  mx-auto flex items-center justify-center  p-4">
-                    <SkeletonTable />
-                </div>
-            ) : (
-                !isError && data && <StatusTable data={data} />
-            )}
-
+                {isPending ? (
+                    <div className="container relative   top-14  mx-auto flex items-center justify-center  p-4">
+                        <SkeletonTable />
+                    </div>
+                ) : (
+                    !isError && data && <StatusTable data={data} />
+                )}
+            </div>
             <Footer />
-        </div>
+        </>
     );
 }

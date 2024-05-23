@@ -34,13 +34,13 @@ export async function siteActivity(): Promise<SiteActivityData[]> {
                                 };
                             },
                         ),
-                        updatedTime:
-                            site_activity.updated[0].datetime.toString(),
-                        activity: site_activity.activity.map(
+                        updatedTime: site_activity.updated[0].datetime[0],
+                        graphData: site_activity.activity.map(
                             (item: XMLActivity) => ({
-                                color: item.$.status_id,
-                                datetime: item.datetime[0],
-                                value: item.value[0],
+                                // Hacky way to convert string to Date and number types
+                                color: item.$.status_id as string,
+                                datetime: item.datetime[0] as unknown as Date,
+                                value: item.value[0] as unknown as number,
                             }),
                         ),
                     };

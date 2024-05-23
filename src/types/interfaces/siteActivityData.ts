@@ -1,7 +1,7 @@
 export interface SiteActivityData {
-    lower_threshold: string[];
+    lower_threshold: [];
     updatedTime: string[];
-    activity: string[];
+    graphData: ActivityPlotGraphProps;
 }
 
 export interface XMLActivity {

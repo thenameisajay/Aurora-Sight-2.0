@@ -27,11 +27,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html
-            lang="en"
-            suppressHydrationWarning={true}
-            className=" h-dvh w-dvw"
-        >
+        <html lang="en" suppressHydrationWarning={true}>
             <head>
                 <link
                     rel="icon"
