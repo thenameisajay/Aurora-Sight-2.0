@@ -9,6 +9,11 @@ interface Status {
     meaning: Description;
 }
 
+/*
+ * Derived from the AuroraWatch UK API status descriptions. (https://aurorawatch-api.lancs.ac.uk/0.2/status-descriptions.xml)
+ * Chose to store it locally to avoid unnecessary API calls.
+ */
+
 export const STATUS_DESCRIPTIONS: Record<string, Status> = {
     green: {
         color: '#33ff33',

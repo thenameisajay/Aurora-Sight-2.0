@@ -4,11 +4,11 @@ import Link from 'next/link';
 
 import type { MainNavItem } from '@/types/interfaces/nav';
 
-export default function Switcher({
-    switcherData,
-}: {
+interface SwitcherProps {
     switcherData: MainNavItem[];
-}) {
+}
+
+export default function Switcher({ switcherData }: SwitcherProps) {
     return (
         <div className=" w-dvh  flex flex-col md:flex-row">
             {switcherData.map((item) => (
