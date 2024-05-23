@@ -3,7 +3,7 @@ import xml2js from 'xml2js';
 
 import type {
     SiteActivityData,
-    ThresholdActivity,
+    ThresholdXMLActivity,
     XMLActivity,
 } from '@/types/interfaces/siteActivityData';
 
@@ -27,10 +27,11 @@ export async function siteActivity(): Promise<SiteActivityData[]> {
 
                     const jsonData: SiteActivityData = {
                         lower_threshold: site_activity.lower_threshold.map(
-                            (item: ThresholdActivity) => {
+                            (item: ThresholdXMLActivity) => {
                                 return {
-                                    value: item._,
-                                    color: item.$.status_id,
+                                    value: item._ as unknown as number,
+                                    color: item.$
+                                        .status_id as unknown as string,
                                 };
                             },
                         ),

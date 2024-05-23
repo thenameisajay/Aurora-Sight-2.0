@@ -12,7 +12,7 @@ export interface XMLActivity {
     value: string[];
 }
 
-export interface ThresholdActivity {
+export interface ThresholdXMLActivity {
     $: {
         status_id: string;
     };
