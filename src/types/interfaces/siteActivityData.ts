@@ -18,3 +18,11 @@ export interface thresholdActivity {
     };
     _: string;
 }
+
+export interface activityPlotGraphProps {
+    data: {
+        color: string;
+        datetime: string;
+        value: number;
+    }[];
+}
