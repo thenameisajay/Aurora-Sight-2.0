@@ -44,7 +44,7 @@ const Header = () => {
                     loading="lazy"
                 />
             </div>
-            <HeadBanner heading={heading} description={description} />
+            <HeadBanner title={heading} description={description} />
         </>
     );
 };

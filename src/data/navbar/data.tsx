@@ -1,4 +1,7 @@
 import {
+    ChartBar,
+    ChartLine,
+    ChartLineUp,
     DotsThreeCircle,
     HandsPraying,
     House,
@@ -13,7 +16,8 @@ import type { MainNavItem } from '@/types/interfaces/nav';
 interface navConfig {
     mainNav: MainNavItem[];
     // mobileNav: SidebarNavItem[];
-    switcherNav: MainNavItem[];
+    moreNav: MainNavItem[];
+    graphLinks: MainNavItem[];
 }
 
 export const navConfig: navConfig = {
@@ -40,7 +44,7 @@ export const navConfig: navConfig = {
             href: '/more', // This is where the API status , Acknowledgments etc ... will be
         },
     ],
-    switcherNav: [
+    moreNav: [
         {
             title: 'API Status',
             href: '/api-status',
@@ -55,6 +59,23 @@ export const navConfig: navConfig = {
             title: "FAQ's",
             href: '/faqs',
             icon: <Question size={50} />,
+        },
+    ],
+    graphLinks: [
+        {
+            title: 'Activity Plot',
+            icon: <ChartBar size={50} />,
+            href: '/graphs/activity-plot',
+        },
+        {
+            title: 'Magnetogram',
+            icon: <ChartLineUp size={50} />,
+            href: '/graphs/magnetogram',
+        },
+        {
+            title: 'Stackplot',
+            icon: <ChartLine size={50} />,
+            href: '/graphs/stackplot',
         },
     ],
 };

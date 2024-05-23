@@ -89,7 +89,7 @@ export default function Page() {
 
     return (
         <div className="flex flex-col items-center justify-center ">
-            <HeadBanner heading={heading} description={description} />
+            <HeadBanner title={heading} description={description} />
             {isError && (
                 <div className="flex flex-col items-center justify-center">
                     <ErrorCard refresh={refetch} />

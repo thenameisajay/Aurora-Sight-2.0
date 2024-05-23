@@ -11,7 +11,7 @@ const description =
 const Header = () => {
     return (
         <>
-            <HeadBanner heading={heading} description={description} />
+            <HeadBanner title={heading} description={description} />
             <div className=" mt-4 flex  h-14 w-14 items-center justify-center  rounded-md bg-black sm:h-20 sm:w-20 md:h-28  md:w-28 ">
                 <Image
                     src="/aurora-watch-logo.png"

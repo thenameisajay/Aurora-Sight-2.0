@@ -75,7 +75,7 @@ export default function Page() {
 
     return (
         <div className="flex w-full flex-col items-center justify-center">
-            <HeadBanner heading={heading} description={description} />
+            <HeadBanner title={heading} description={description} />
             <div className="h-10 md:h-20"></div>
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
                 <APIStatusCard
