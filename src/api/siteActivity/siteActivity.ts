@@ -22,15 +22,10 @@ export async function siteActivity(): Promise<SiteActivityData[]> {
                     const { site_activity } = result;
 
                     const jsonData: SiteActivityData = {
-                        lower_threshold: site_activity.lower_threshold.map(
-                            (item: object) => item,
-                        ),
-                        updated: site_activity.updated.map(
-                            (item: object) => item,
-                        ),
-                        activity: site_activity.activity.map(
-                            (item: object) => item,
-                        ),
+                        lower_threshold: site_activity.lower_threshold,
+                        updatedTime:
+                            site_activity.updated[0].datetime.toString(),
+                        activity: site_activity.activity,
                     };
 
                     resolve([jsonData]);

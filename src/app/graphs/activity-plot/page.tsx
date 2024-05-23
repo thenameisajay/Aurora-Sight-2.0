@@ -131,6 +131,12 @@ export default function Page() {
 
     if (isError) return <h1>Error...</h1>;
 
+    console.log('Site ACITIVIY:', siteActivityData);
+
+    const { updatedTime } = siteActivityData[0];
+
+    console.log('Updated Time:', updatedTime);
+
     return (
         <div>
             <h1>Activity Plot</h1>

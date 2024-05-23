@@ -1,5 +1,5 @@
 export interface SiteActivityData {
     lower_threshold: string[];
-    updated: string[];
+    updatedTime: string[];
     activity: string[];
 }
