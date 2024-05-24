@@ -1,7 +1,11 @@
 import axios from 'axios';
 import xml2js from 'xml2js';
 
-import type { SiteActivityData } from '@/types/interfaces/siteActivityData';
+import type {
+    SiteActivityData,
+    ThresholdXMLActivity,
+    XMLActivity,
+} from '@/types/interfaces/siteActivityData';
 
 const URL =
     'https://aurorawatch-api.lancs.ac.uk/0.2/status/alerting-site-activity.xml';
@@ -23,13 +27,22 @@ export async function siteActivity(): Promise<SiteActivityData[]> {
 
                     const jsonData: SiteActivityData = {
                         lower_threshold: site_activity.lower_threshold.map(
-                            (item: object) => item,
+                            (item: ThresholdXMLActivity) => {
+                                return {
+                                    value: item._ as unknown as number,
+                                    color: item.$
+                                        .status_id as unknown as string,
+                                };
+                            },
                         ),
-                        updated: site_activity.updated.map(
-                            (item: object) => item,
-                        ),
-                        activity: site_activity.activity.map(
-                            (item: object) => item,
+                        updatedTime: site_activity.updated[0].datetime[0],
+                        graphData: site_activity.activity.map(
+                            (item: XMLActivity) => ({
+                                // Hacky way to convert string to Date and number types
+                                color: item.$.status_id as string,
+                                datetime: item.datetime[0] as unknown as Date,
+                                value: item.value[0] as unknown as number,
+                            }),
                         ),
                     };
 

@@ -1,5 +1,12 @@
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
+
+import { statusDescription } from '@/api/statusDescription/statusDescription';
 import HeadBanner from '@/components/banners/head-banner/HeadBanner';
+import ErrorCard from '@/components/errors/ErrorCard';
 import Footer from '@/components/footer/Footer';
+import { SkeletonTable } from '@/components/skeletons/SkeletonTable';
 import {
     Table,
     TableBody,
@@ -9,13 +16,15 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { statusInfo } from '@/data/status-descriptions/status-descriptions';
+import type { StatusDescription } from '@/types/interfaces/statusDescriptions';
 
 const heading = 'Status Description';
 
 const description = 'A detailed overview of the geomagnetic activity status ';
 
-const StatusTable = () => {
+const StatusTable = ({ data }: { data: StatusDescription[] | undefined }) => {
+    console.log('Status Description in the Table:', data);
+
     return (
         <div className="container relative   top-14  mx-auto flex items-center justify-center  p-4">
             <Table>
@@ -42,8 +51,8 @@ const StatusTable = () => {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {statusInfo.map((status) => (
-                        <TableRow key={status.key}>
+                    {data?.map((status) => (
+                        <TableRow key={status.color}>
                             <TableCell>
                                 <div
                                     className=" h-6  w-20 rounded-full "
@@ -53,16 +62,16 @@ const StatusTable = () => {
                                 />
                             </TableCell>
                             <TableCell className="text-right font-bold">
-                                {status.key?.toUpperCase()}
+                                {status.id.toUpperCase()}
                             </TableCell>
                             <TableCell className="font-semibold">
-                                {status.color}
+                                {status.color.toUpperCase()}
                             </TableCell>
                             <TableCell className="md:text-base">
-                                {status.description}
+                                {status.description.text}
                             </TableCell>
                             <TableCell className="md:text-base">
-                                {status.meaning}
+                                {status.meaning.text}
                             </TableCell>
                         </TableRow>
                     ))}
@@ -73,11 +82,30 @@ const StatusTable = () => {
 };
 
 export default function Page() {
+    const { data, isPending, isError, refetch } = useQuery({
+        queryKey: ['status-description'],
+        queryFn: statusDescription,
+    });
+
     return (
-        <div className="flex flex-col items-center justify-center ">
-            <HeadBanner heading={heading} description={description} />
-            <StatusTable />
+        <>
+            <div className="flex h-dvh flex-col items-center justify-center ">
+                <HeadBanner title={heading} description={description} />
+                {isError && (
+                    <div className="flex flex-col items-center justify-center">
+                        <ErrorCard refresh={refetch} />
+                    </div>
+                )}
+
+                {isPending ? (
+                    <div className="container relative   top-14  mx-auto flex items-center justify-center  p-4">
+                        <SkeletonTable />
+                    </div>
+                ) : (
+                    !isError && data && <StatusTable data={data} />
+                )}
+            </div>
             <Footer />
-        </div>
+        </>
     );
 }

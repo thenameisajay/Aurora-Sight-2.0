@@ -20,7 +20,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import type { StatusData } from '@/types/interfaces/currentStatus';
+import type { StatusCardProps } from '@/types/interfaces/cardProps';
 import { getRelativeTime } from '@/utils/helpers/getRelativeTime';
 import {
     getStatusColor,
@@ -44,78 +44,66 @@ const Header = () => {
                     loading="lazy"
                 />
             </div>
-            <HeadBanner heading={heading} description={description} />
+            <HeadBanner title={heading} description={description} />
         </>
     );
 };
 
-const StatusCard = memo(
-    ({
-        data,
-        refresh,
-        dateUpdated,
-    }: {
-        data: StatusData[];
-        refresh: () => void;
-        dateUpdated: Date;
-    }) => {
-        const { status_id, datetime } = data[0];
+const StatusCard = memo(({ data, refresh, dateUpdated }: StatusCardProps) => {
+    const { status_id, datetime } = data[0];
 
-        const statusColor = getStatusColor(status_id);
+    const statusColor = getStatusColor(status_id);
 
-        const statusDescription = getStatusDescription(status_id);
+    const statusDescription = getStatusDescription(status_id);
 
-        const statusMeaning = getStatusMeaning(status_id);
+    const statusMeaning = getStatusMeaning(status_id);
 
-        return (
-            <Card className="  relative mx-4 mt-3 overflow-y-scroll  md:w-96 ">
-                <CardHeader>
-                    <CardTitle className=" text-1xl md:text-3xl">
-                        Status
-                    </CardTitle>
-                    <CardDescription className="text-gray-500 md:text-base">
-                        {statusDescription}
-                    </CardDescription>
-                </CardHeader>
+    return (
+        <Card className="  relative mx-4 mt-3 overflow-y-scroll  md:w-96 ">
+            <CardHeader>
+                <CardTitle className=" text-1xl md:text-3xl">Status</CardTitle>
+                <CardDescription className="text-gray-500 md:text-base">
+                    {statusDescription}
+                </CardDescription>
+            </CardHeader>
 
-                <CardContent>
-                    <div className="flex flex-col">
-                        <div
-                            className={` flex h-14 items-center justify-center space-x-4 rounded-md border  p-4 text-white`}
-                            style={{ backgroundColor: statusColor }} // Forcefully added the style prop , as the dynamic class prop via Tailwind was not working.
-                        >
-                            <div className="flex-1 space-y-1"></div>
-                        </div>
+            <CardContent>
+                <div className="flex flex-col">
+                    <div
+                        className={` flex h-14 items-center justify-center space-x-4 rounded-md border  p-4 text-white`}
+                        style={{ backgroundColor: statusColor }} // Forcefully added the style prop , as the dynamic class prop via Tailwind was not working.
+                    >
+                        <div className="flex-1 space-y-1"></div>
                     </div>
-                    <div className="  flex w-full items-center justify-center  text-center">
-                        <p className="mt-2 text-sm text-gray-600 md:text-base">
-                            {statusMeaning}
-                        </p>
-                    </div>
-                </CardContent>
-                <CardFooter className="flex w-full flex-col">
-                    <Button onClick={refresh} className="my-1">
-                        Refresh
-                    </Button>
-                    <div className="flex flex-col items-center justify-center ">
-                        <p className="mt-2  text-xs text-gray-600 md:text-sm">
-                            <span>API Last Updated:</span>{' '}
-                            {getRelativeTime(new Date(datetime))}
-                        </p>
-                        <p className="mt-2  text-xs text-gray-600 md:text-sm">
-                            <span>Last Refreshed:</span>{' '}
-                            {getRelativeTime(dateUpdated)}
-                        </p>
-                    </div>
-                </CardFooter>
-            </Card>
-        );
-    },
-);
+                </div>
+                <div className="  flex w-full items-center justify-center  text-center">
+                    <p className="mt-2 text-sm text-gray-600 md:text-base">
+                        {statusMeaning}
+                    </p>
+                </div>
+            </CardContent>
+            <CardFooter className="flex w-full flex-col">
+                <Button onClick={refresh} className="my-1">
+                    Refresh
+                </Button>
+                <div className="flex flex-col items-center justify-center ">
+                    <p className="mt-2  text-xs text-gray-600 md:text-sm">
+                        <span>API Last Updated:</span>{' '}
+                        {getRelativeTime(new Date(datetime))}
+                    </p>
+                    <p className="mt-2  text-xs text-gray-600 md:text-sm">
+                        <span>Last Refreshed:</span>{' '}
+                        {getRelativeTime(dateUpdated)}
+                    </p>
+                </div>
+            </CardFooter>
+        </Card>
+    );
+});
 
 StatusCard.displayName = 'StatusCard';
 
-export default function Home() {
+export default function Page() {
     const { data, isPending, isError, refetch } = useQuery({
         queryKey: ['liveStatus'],
         queryFn: currentStatus,
