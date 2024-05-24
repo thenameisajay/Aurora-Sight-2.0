@@ -59,7 +59,7 @@ export default function Page() {
 
     return (
         <>
-            <div className="flex h-dvh w-full flex-col items-center justify-center">
+            <div className="flex  w-full flex-col items-center justify-center">
                 <HeadBanner title={title} description={description} />
                 <p>
                     Last Updated :
@@ -74,6 +74,7 @@ export default function Page() {
                     <GenericResponsiveBar data={transformedGraphData} />
                 </div>
             </div>
+            <div className=" h-10 "></div>
             <Footer />
         </>
     );

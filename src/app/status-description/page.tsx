@@ -89,7 +89,7 @@ export default function Page() {
 
     return (
         <>
-            <div className="flex h-dvh flex-col items-center justify-center ">
+            <div className="flex  flex-col items-center justify-center ">
                 <HeadBanner title={heading} description={description} />
                 {isError && (
                     <div className="flex flex-col items-center justify-center">
@@ -105,7 +105,7 @@ export default function Page() {
                     !isError && data && <StatusTable data={data} />
                 )}
             </div>
-            <Footer />
+            <div className=" h-10  md:h-20"></div> <Footer />
         </>
     );
 }
