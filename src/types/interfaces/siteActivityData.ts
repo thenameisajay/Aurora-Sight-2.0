@@ -1,7 +1,7 @@
 export interface SiteActivityData {
-    lower_threshold: [];
+    lower_threshold: ThresholdTypes[];
     updatedTime: string[];
-    graphData: ActivityPlotGraphProps;
+    graphData: ActivityPlotGraphTypes;
 }
 
 export interface XMLActivity {
@@ -19,7 +19,12 @@ export interface ThresholdXMLActivity {
     _: string;
 }
 
-export interface ActivityPlotGraphProps {
+export interface ThresholdTypes {
+    color: string;
+    value: number;
+}
+
+export interface ActivityPlotGraphTypes {
     data: {
         color: string;
         datetime: string;

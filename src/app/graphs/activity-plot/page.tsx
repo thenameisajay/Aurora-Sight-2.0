@@ -34,8 +34,11 @@ export default function Page() {
 
     if (isError) return <h1>Error...</h1>;
 
-    const { updatedTime, graphData } = siteActivityData[0];
+    const { updatedTime, graphData, lower_threshold } = siteActivityData[0];
 
+    console.log('Threshold Data:', lower_threshold);
+
+    console.log('Type = Threshold Data:', typeof lower_threshold);
     const transformedGraphData = Object.values(graphData).map((item) => {
         return {
             color: item.color,
