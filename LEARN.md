@@ -105,7 +105,7 @@ Go to your project settings on the Vercel dashboard and add the necessary enviro
 ## Technologies Used
 
 -   **Front-End:** Next.js (React), Tailwind CSS, TypeScript
--   **Back-End:** Node.js, Express
+-   **Back-End:** Node.js
 -   **Deployment:** Vercel
 -   **API Integration:** Aurora Watch API
 
@@ -121,7 +121,6 @@ Go to your project settings on the Vercel dashboard and add the necessary enviro
 -   [Next.js Documentation](https://nextjs.org/docs)
 -   [React Documentation](https://reactjs.org/docs/getting-started.html)
 -   [Node.js Documentation](https://nodejs.org/en/docs/)
--   [Express Documentation](https://expressjs.com/)
 -   [Vercel Documentation](https://vercel.com/docs)
 -   [Aurora Watch API Documentation](https://aurorawatch-api.lancs.ac.uk/)
 
