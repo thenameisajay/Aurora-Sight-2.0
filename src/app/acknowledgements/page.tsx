@@ -28,9 +28,9 @@ const Header = () => {
 
 const Content = () => {
     return (
-        <div className=" mx-4  flex-col space-y-2   rounded-md border border-gray-100 p-2 text-center   md:w-96  md:text-base  lg:w-[1000px] lg:text-xl">
+        <div className="mx-auto max-w-md flex-col space-y-4 rounded-md border border-gray-100 p-4 text-center md:max-w-lg lg:max-w-3xl">
             <div>
-                <h2>
+                <h2 className="text-lg md:text-xl lg:text-2xl">
                     This app uses data from{' '}
                     <a
                         href="http://aurorawatch.lancs.ac.uk/"
@@ -44,7 +44,7 @@ const Content = () => {
                 </h2>
             </div>
             <div>
-                <p>
+                <p className="text-sm md:text-base lg:text-lg">
                     AuroraWatch UK is a service provided by the Space and
                     Planetary Physics group at Lancaster University. The data
                     used by AuroraWatch UK has specific data acknowledgement
@@ -52,7 +52,7 @@ const Content = () => {
                 </p>
             </div>
             <div>
-                <p>
+                <p className="text-sm md:text-base lg:text-lg">
                     For more information, visit the{' '}
                     <a
                         href="http://aurorawatch.lancs.ac.uk/"
@@ -71,10 +71,14 @@ const Content = () => {
 
 export default function Page() {
     return (
-        <div className="flex w-full flex-col items-center justify-center">
-            <Header />
-            <div className=" h-10  md:h-20"></div> <Content />
+        <>
+            <div className="flex w-full flex-col items-center justify-center">
+                <Header />
+                <div className=" h-10  md:h-20"></div>
+                <Content />
+            </div>
+            <div className=" h-10  md:h-20"></div>
             <Footer />
-        </div>
+        </>
     );
 }
