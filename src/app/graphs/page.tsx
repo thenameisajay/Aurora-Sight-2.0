@@ -16,7 +16,7 @@ const { graphLinks } = navConfig;
 export default function Page() {
     return (
         <>
-            <div className="flex  w-full flex-col items-center justify-center">
+            <div className="flex  w-full  flex-col items-center justify-center">
                 <HeadBanner title={title} description={description} />
                 <div className=" h-10  md:h-20"></div>
 

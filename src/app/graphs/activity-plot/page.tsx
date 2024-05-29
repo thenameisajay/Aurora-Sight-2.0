@@ -59,16 +59,16 @@ export default function Page() {
 
     return (
         <>
-            <div className="flex  w-full flex-col items-center justify-center">
+            <div className="flex  w-80 flex-col items-center justify-center text-xs  font-light  md:w-full md:text-base">
                 <HeadBanner title={title} description={description} />
-                <p>
+                <span className="mt-2">
                     Last Updated :
                     {dayjs(updatedTime.toString()).format('DD/MM/YYYY HH:mm')}
-                </p>
-                <p>
+                </span>
+                <span>
                     {dayjs(firstDateTime).format('DD/MM/YYYY HH:mm')} -{' '}
                     {dayjs(lastDateTime).format('DD/MM/YYYY HH:mm')}
-                </p>
+                </span>
 
                 <div className=" mx-5 h-[500px] w-full">
                     <GenericResponsiveBar data={transformedGraphData} />
