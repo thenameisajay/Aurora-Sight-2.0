@@ -33,7 +33,7 @@ export default function DesktopNav({
                             href={item.href}
                             key={item.href}
                             className={
-                                `  items-center justify-center rounded-full p-2 text-sm font-medium text-muted-foreground  transition-colors  hover:bg-slate-50 hover:text-primary dark:hover:bg-slate-800 ` +
+                                `  items-center justify-center rounded-full p-2 text-sm font-medium text-muted-foreground  transition-colors  hover:bg-slate-50 hover:text-primary  ` +
                                 (path === item.href.split('/')[1]
                                     ? 'bg-slate-100 text-primary'
                                     : '')
