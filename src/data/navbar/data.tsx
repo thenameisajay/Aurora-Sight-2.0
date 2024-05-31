@@ -57,7 +57,7 @@ export const navConfig: navConfig = {
         },
         {
             title: "FAQ's",
-            href: '/faqs',
+            href: '/under-construction',
             icon: <Question size={50} />,
         },
     ],
@@ -70,12 +70,12 @@ export const navConfig: navConfig = {
         {
             title: 'Magnetogram',
             icon: <ChartLineUp size={50} />,
-            href: '/graphs/magnetogram',
+            href: '/under-construction',
         },
         {
             title: 'Stackplot',
             icon: <ChartLine size={50} />,
-            href: '/graphs/stackplot',
+            href: '/under-construction',
         },
     ],
 };
